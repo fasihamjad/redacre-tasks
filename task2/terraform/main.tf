@@ -1,46 +1,7 @@
 provider "aws" {
   region = "us-east-1" # Change to your desired AWS region
 }
-#
-#resource "aws_security_group" "my_security_group" {
-#  name        = "my-security-group"
-#  description = "Security group with SSH, HTTP, HTTPS, 3000, and 5000 ports open"
-#  
-#  ingress {
-#    from_port   = 22
-#    to_port     = 22
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
-#  
-#  ingress {
-#    from_port   = 80
-#    to_port     = 80
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
-#  
-#  ingress {
-#    from_port   = 443
-#    to_port     = 443
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
-#  
-#  ingress {
-#    from_port   = 3000
-#    to_port     = 3000
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
-#  
-#  ingress {
-#    from_port   = 5000
-#    to_port     = 5000
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
-#}
+
 
 resource "aws_security_group" "all" {
   name = "all-trafic"
