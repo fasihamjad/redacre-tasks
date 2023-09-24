@@ -1,0 +1,47 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./test-project/api
+#    volumes:
+#      - ./test-project/api:/app
+
+
+#    image: your-backend-image:latest
+    ports:
+      - "5000:5000"
+    # Other configurations for the backend container
+    networks:
+      - my_network
+
+  proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+    networks:
+      - my_network
+
+  frontend:
+    build:
+      context: ./test-project/sys-stats
+      dockerfile: Dockerfile
+#    volumes:
+#      - ./test-project/sys-stats:/app
+#    command: yarn start
+    ports:
+      - "3000:3000"
+    # Other configurations for the frontend container
+    networks:
+      - my_network
+
+
+
+#volumes:
+#  frontend:
+
+networks:
+  my_network:
