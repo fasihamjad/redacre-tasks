@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1" # Change to your desired AWS region
+  region = "us-east-1"
 }
 
 
@@ -70,9 +70,9 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "hello" {
 ami = data.aws_ami.ubuntu.image_id
-#  ami           = "ami-0261755bbcb8c4a84" # Ubuntu 20.04 LTS (free tier), replace with the correct AMI ID if needed
+#  ami           = "ami-0261755bbcb8c4a84" 
   instance_type = "t2.micro"
-  key_name      = "redacretask" # Existing key pair name
+  key_name      = "redacretask"
 
   root_block_device {
     volume_size = 20
@@ -81,8 +81,8 @@ ami = data.aws_ami.ubuntu.image_id
   vpc_security_group_ids = [aws_security_group.all.id]
 
   provisioner "file" {
-    source      = "/home/fasihamjad-aik/tasksred/task1"  # Replace with the path to your local files
-    destination = "/home/ubuntu/" # Replace with the desired path on the EC2 instance
+    source      = "/home/fasihamjad-aik/tasksred/task1" 
+    destination = "/home/ubuntu/"
   }
 
   provisioner "remote-exec" {
@@ -104,16 +104,7 @@ ami = data.aws_ami.ubuntu.image_id
       " echo 'Command 7 completed'",
       "sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y",
       "echo 'Command 8 completed'",      
-# Add your user to the docker group (optional, for non-root users)
-      # "sudo usermod -aG docker $${USER}",
-      
-      # Start Docker service
-     # "sudo systemctl start docker",
-     # "sudo systemctl enable docker",
 
-      # Install Docker Compose
-      #"sudo curl -L 'https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)' -o /usr/local/bin/docker-compose",
-     # "sudo chmod +x /usr/local/bin/docker-compose",
       
       # Run Docker Compose command
       "cd /home/ubuntu/task1", # Change to the directory where your Docker Compose files are located
@@ -125,7 +116,7 @@ ami = data.aws_ami.ubuntu.image_id
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = "${file("/home/fasihamjad-aik/Downloads/redacretask.pem")}" # Replace with the path to your private key
+    private_key = "${file("/home/fasihamjad-aik/Downloads/redacretask.pem")}"
     host        = "${self.public_dns}"
   }
 }
