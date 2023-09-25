@@ -13,6 +13,7 @@ Three containers will be running and the final user can access on port 80
 Task 2:
 
 Go in the folder /task2/terraform.
+created IAM user and exported credentials into my local machine using export command.
 I have created a security group in which I have allowed specific ports opened in inbound rules.
  Setup the ami image, attach keyfile.
 Created ssh configuration.
